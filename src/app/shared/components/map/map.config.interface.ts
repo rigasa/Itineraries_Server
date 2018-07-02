@@ -1,5 +1,6 @@
 export interface IMapConfig {
-    latitude: number, 
+    selector: string, 
+    latitude: number,
     longitude: number, 
     zoom?: number,
     customStyle?: boolean,

@@ -10,6 +10,13 @@ import { AppRoutingModule } from './app.routing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
+import { enableProdMode } from '@angular/core';
+
+// STORAGE
+import { IonicStorageModule } from '@ionic/storage';
+
+enableProdMode();
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -18,7 +25,8 @@ import { environment } from '../environments/environment';
     IonicModule.forRoot(), 
     AppRoutingModule,
     ServiceWorkerModule.register('./ngsw-worker.js',
-    { enabled: environment.production })
+    { enabled: environment.production }),
+    IonicStorageModule.forRoot()
   ],
   providers: [
     { 

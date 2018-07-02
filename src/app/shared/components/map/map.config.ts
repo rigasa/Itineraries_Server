@@ -1,5 +1,6 @@
 export let MapConfig:Object = {
-        "latitude": 46.2587, 
+        "selector": "map", 
+        "latitude": 46.2587,
         "longitude": 6.11938, 
         "zoom": 11,
         "customStyle": false,

@@ -52,7 +52,7 @@ export class MapComponent implements AfterViewInit {
     };
     //---------------------------------
     // Create Map
-    this._map = new google.maps.Map(document.getElementById('map'), {
+    this._map = new google.maps.Map(document.getElementById( _settings.selector ), {
       zoom: _settings.zoom,
       center: POSITION
     });
@@ -65,7 +65,6 @@ export class MapComponent implements AfterViewInit {
     // Custom style if selected
     if(( typeof( _settings.customStyle ) !== 'undefined' ) && ( _settings.customStyle ) ){
       let _style = this.getCustomStyle(); 
-      console.log( 'CUSTOM STYLE' );
       this._map.setOptions( { styles: _style } );
     }
     //---------------------------------
@@ -104,8 +103,19 @@ export class MapComponent implements AfterViewInit {
   }
 
   //----------------------------------
+  //----------------------------------
+  //----------------------------------
+  // Utilities
+  //----------------------------------
+  //----------------------------------
+  //----------------------------------
+  getSettings(){
+    // Fusion de MapConfig avec mapSettings
+    return Object.assign( MapConfig, this.mapSettings);
+  }
+  //----------------------------------
   //Load the Google Maps API javascript
-  loadGMapsAPI( key ) {
+  loadGMapsAPI( key ): any {
 
     if (typeof( this._promise ) === 'undefined' ) {
       this._promise = new Promise( resolve => {
@@ -123,17 +133,6 @@ export class MapComponent implements AfterViewInit {
       });
     }
     return this._promise;
-  }
-  //----------------------------------
-  //----------------------------------
-  //----------------------------------
-  // Utilities
-  //----------------------------------
-  //----------------------------------
-  //----------------------------------
-  getSettings(){
-    // Fusion de MapConfig avec mapSettings
-    return Object.assign( MapConfig, this.mapSettings);
   }
   //----------------------------------
   //----------------------------------

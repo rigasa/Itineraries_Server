@@ -20,13 +20,14 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'itinerary',
+    loadChildren: '../itinerary/itinerary.module#ItineraryModule'
+  },
+  {
     path: '',
     redirectTo: '/home/(map:map)'
   }
-  /* {
-    path: 'cover',
-    loadChildren: '../cover/cover.module#CoverModule'
-  },
+  /* ,
   {
     path: 'point',
     loadChildren: '../point/point.module#PointModule'
