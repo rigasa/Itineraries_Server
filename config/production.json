@@ -1,0 +1,8 @@
+{
+    "server": {
+        "port": 3000
+    },
+    "mongodb": {
+        "database": "mongodb://rigasa:Olympus_OMD_1@ds119160.mlab.com:19160/rgs_itineraries"
+    }
+}
