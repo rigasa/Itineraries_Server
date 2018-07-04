@@ -4,5 +4,8 @@
     },
     "mongodb": {
         "database": "mongodb://localhost/yabe-development"
+    },
+    "usage": {
+        "version": "1.0.0"
     }
 }
