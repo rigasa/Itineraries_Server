@@ -5,20 +5,24 @@
  */
 "use strict";
 
-const bcrypt   = require("bcrypt");
+const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
 
 const BCRYPT_COST = 4; // minimum=4
 
 /* Schema */
 const userSchema = new mongoose.Schema({
-    name:  {type: String, required: true, unique: true},
-    hash:  {type: String, set: val => this.hash},
+    name: { type: String, required: true, unique: true },
+    hash: { type: String, set: val => this.hash },
+    role: { type: String },
+    created: { type: Date },
+    modified: { type: Date },
+    lang: { type: String }
 });
 
 /* authentication using bcrypt */
-userSchema.statics.authenticate = function (username, password) {
-    return this.findOne({name: username}).then(user => {
+userSchema.statics.authenticate = function(username, password) {
+    return this.findOne({ name: username }).then(user => {
         if (!user)
             return false;
         return bcrypt.compare(password, user.hash).then(success => {
@@ -28,7 +32,7 @@ userSchema.statics.authenticate = function (username, password) {
 };
 
 /* set the user's password using bcrypt */
-userSchema.methods.resetPassword = function (new_password) {
+userSchema.methods.resetPassword = function(new_password) {
     return bcrypt.hash(new_password, BCRYPT_COST).then(new_hash => {
         /* here we may want to write:
          *
@@ -39,7 +43,7 @@ userSchema.methods.resetPassword = function (new_password) {
          * values. findByIdAndUpdate() will bypass the Schema setter by
          * updating the `hash' field directly in the database.
          */
-        return User.findByIdAndUpdate(this._id, {$set: {hash: new_hash}});
+        return User.findByIdAndUpdate(this._id, { $set: { hash: new_hash } });
     });
 };
 
