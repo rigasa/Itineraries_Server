@@ -11,6 +11,7 @@ app.locals.connect().then(() => {
 
     // listen to the configured port for incoming requests.
     const port = process.env.PORT || app.locals.config.server.port;
+
     app.listen(port, function() {
         console.log(app.locals.name + ' listening on port ' + port);
     });

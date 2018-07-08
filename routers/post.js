@@ -3,23 +3,23 @@
  */
 "use strict";
 
-const express  = require("express");
+const express = require("express");
 /* our applications modules */
 const Post = require("../models/post");
 
 const router = new express.Router();
 
 // create a post
-router.post("/", function (req, res, next) {
+router.post("/", function(req, res, next) {
     const input = req.body;
     Post.create(input).then(created => {
-        return res.status(201 /* Created */).send(created);
+        return res.status(201 /* Created */ ).send(created);
     }).catch(next);
 });
 
 // read all the posts
 router.get("/", (req, res, next) => {
-    Post.find({/* no conditions */}).then(results => {
+    Post.find({ /* no conditions */ }).then(results => {
         return res.send(results);
     }).catch(next);
 });
@@ -32,33 +32,33 @@ router.get("/:id", (req, res, next) => {
         if (found)
             return res.send(found);
         else
-            return res.status(404 /* Not Found */).send();
+            return res.status(404 /* Not Found */ ).send();
     });
 });
 
 // update
 router.put("/:id", (req, res, next) => {
-    const id    = req.params.id;
+    const id = req.params.id;
     const input = req.body;
-    const promise = Post.findByIdAndUpdate(id, input, {overwrite: true, new: true});
+    const promise = Post.findByIdAndUpdate(id, input, { overwrite: true, new: true });
     promise.then(found => {
         if (found)
             return res.send(found);
         else
-            return res.status(404 /* Not Found */).send();
+            return res.status(404 /* Not Found */ ).send();
     }).catch(next);
 });
 
 // partial update
 router.patch("/:id", (req, res, next) => {
-    const id    = req.params.id;
+    const id = req.params.id;
     const input = req.body;
-    const promise = Post.findByIdAndUpdate(id, {$set: input}, {new: true})
+    const promise = Post.findByIdAndUpdate(id, { $set: input }, { new: true })
     promise.then(found => {
         if (found)
             return res.send(found);
         else
-            return res.status(404 /* Not Found */).send();
+            return res.status(404 /* Not Found */ ).send();
     }).catch(next);
 });
 
@@ -69,7 +69,7 @@ router.delete("/:id", (req, res, next) => {
         if (found)
             return res.send(found);
         else
-            return res.status(404 /* Not Found */).send();
+            return res.status(404 /* Not Found */ ).send();
     }).catch(next)
 });
 
