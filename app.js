@@ -56,7 +56,7 @@ app.use("/api/posts", require("./routers/post"));
 //This is CORS-enabled for all origins
 app.use(cors());
 
-/*const port = process.env.PORT || app.locals.config.server.port;
+const port = process.env.PORT || app.locals.config.server.port;
 
 // Add headers
 app.use(function(req, res, next) {
@@ -76,7 +76,7 @@ app.use(function(req, res, next) {
 
     // Pass to next layer of middleware
     next();
-});*/
+});
 
 // expose our app to require()
 module.exports = app;
