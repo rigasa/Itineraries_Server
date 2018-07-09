@@ -49,10 +49,6 @@ passport.use(new BasicStrategy((username, password, done) => {
     }).catch(done);
 }));
 
-/* our routers */
-app.use("/api/users", require("./routers/user"));
-app.use("/api/posts", require("./routers/post"));
-
 //This is CORS-enabled for all origins
 app.use(cors());
 
@@ -62,13 +58,16 @@ const port = process.env.PORT || app.locals.config.server.port;
 app.use(function(req, res, next) {
 
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:' + port);
+    res.setHeader('Access-Control-Allow-Origin', '*');
 
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
     // Request headers you wish to allow
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+    //
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization');
 
     // Set to true if you need the website to include cookies in the requests sent
     // to the API (e.g. in case you use sessions)
@@ -77,6 +76,10 @@ app.use(function(req, res, next) {
     // Pass to next layer of middleware
     next();
 });
+
+/* our routers */
+app.use("/api/users", require("./routers/user"));
+app.use("/api/posts", require("./routers/post"));
 
 // expose our app to require()
 module.exports = app;
