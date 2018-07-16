@@ -80,6 +80,8 @@ app.use(function(req, res, next) {
 /* our routers */
 app.use("/api/users", require("./routers/user"));
 app.use("/api/posts", require("./routers/post"));
+app.use("/api/favorite", require("./routers/favorite"));
+
 
 // expose our app to require()
 module.exports = app;
